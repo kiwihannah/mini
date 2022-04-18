@@ -31,7 +31,7 @@ app.listen(port, () => {
 //   .catch(console.error);
 
 router.get('/', (_, res) => {
-  res.send('MINI PROJ SERVER OPEN 2');
+  res.send('MINI PROJ SERVER OPEN 3');
 });
 
 // routes
