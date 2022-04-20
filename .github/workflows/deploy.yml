@@ -22,12 +22,11 @@ jobs:
       - name: Run tests 
         run: npm test
 
-      - name: Publish Unit Test Results
-        uses: EnricoMi/publish-unit-test-result-action/composite@v1
-        if: always()
+      - name: Publish Unit Test Results # test 후 result를 보기 위해 추가
+        uses: dorny/test-reporter@v1
+        if: ${{ always() }} # test가 실패해도 report를 남기기 위해 설정
         with:
-          files: test-results/results.xml
-          report_individual_runs: "true"
+          files: build/test-results/**/*.xml
 
       - name: Deploy
         uses: appleboy/ssh-action@master
