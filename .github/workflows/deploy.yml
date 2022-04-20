@@ -9,27 +9,20 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
-      - name: if fail
-        uses: actions/checkout@v2
+
+      - name: Run tests
+        run: npm test:report
+
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        if: success() || failure()    # run this step even if previous step failed
         with:
-          github-token: ${{github.token}}
-          script: |
-            github-token: ${{github.token}} 
-              script: |
-                const ref = "${{github.ref}}"
-                const pull_number = Number(ref.split("/")[2])
-                await github.pulls.createReview({
-                  ...context.repo,
-                  pull_number,
-                  body:"테스트코드를 다시 확인해주세요. ",
-                  event: "REQUEST_CHANGES"
-                })
-                await github.pulls.update({
-                  ...context.repo,
-                  pull_number,
-                  state: "closed"
-                })
-          if: failure()
+          name: test-results
+          path: junit.xml
+          fail-on-error: 'false'
+          reporter: jest-junit        # Format of test results
+          token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Deploy
         uses: appleboy/ssh-action@master
         with:
