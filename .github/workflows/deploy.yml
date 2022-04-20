@@ -22,15 +22,12 @@ jobs:
       - name: Run tests 
         run: npm test
 
-      - name: Test Report
-        uses: dorny/test-reporter@v1
-        if: success() || failure()
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action/composite@v1
+        if: always()
         with:
-          name: test-results
-          files: build/test-results/**/*.xml
-          fail-on-error: 'false'
-          reporter: mocha-json
-          token: ${{ secrets.GITHUB_TOKEN }}
+          files: test-results/results.xml
+          report_individual_runs: "true"
 
       - name: Deploy
         uses: appleboy/ssh-action@master
