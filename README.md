@@ -1,2 +1,2 @@
 # mini
-mini team proj w/ mySql, docker, jenkins, typescript
+mini team proj w/ mySql, docker, github actions, typescript, nest.js
