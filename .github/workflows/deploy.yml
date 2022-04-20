@@ -38,6 +38,7 @@ jobs:
             
       - name: Slack Notifications
         uses: 8398a7/action-slack@v3
+        if: failure()
         with:
           status: custom
           fields: workflow,job,commit,repo,ref,author,took
@@ -45,7 +46,7 @@ jobs:
             {
               attachments: [{
                 color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
-                text: 'TEST RESULT'
+                text: '테스트 망함'
               }]
             }
         env:
