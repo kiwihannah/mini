@@ -6,7 +6,7 @@ const helmet = require('helmet');
 const dotenv = require('dotenv');
 
 dotenv.config();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 
 const app = express();
 const router = express.Router();
@@ -18,7 +18,7 @@ app.use(cors({ origin: '*' }));
 app.use('/api', bodyParser.json(), router);
 
 app.listen(port, () => {
-  console.log(`[ web & socket server ] listening on ${port}`);
+  console.log(`http://localhost:${port}/api/`);
 });
 
 // connect DB
