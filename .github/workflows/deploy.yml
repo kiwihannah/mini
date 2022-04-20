@@ -10,10 +10,17 @@ jobs:
 
     steps:
 
-      - name: Run tests
-          with:
-              script: |
-                npm test
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Set up node 
+        uses: actions/setup-node@v1
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests 
+        run: npm test
 
       - name: Test Report
         uses: dorny/test-reporter@v1
@@ -34,7 +41,6 @@ jobs:
           port: ${{ secrets.REMOTE_SSH_PORT }}
           script: |
             cd /home/ubuntu/mini
-            sudo npm install
             sudo git pull
             sudo pm2 reload all
             
