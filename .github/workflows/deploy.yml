@@ -27,7 +27,7 @@ jobs:
         if: success() || failure()
         with:
           name: test-results
-          path: target/test-reports/*.xml
+          files: build/test-results/**/*.xml
           fail-on-error: 'false'
           reporter: mocha-json
           token: ${{ secrets.GITHUB_TOKEN }}
