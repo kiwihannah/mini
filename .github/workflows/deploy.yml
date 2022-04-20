@@ -27,7 +27,7 @@ jobs:
         if: success() || failure()
         with:
           name: test-results
-          path: ${{ github.workspace }}/reports/test-report.json
+          path: ${{ github.workspace }}/test-report.json
           fail-on-error: 'false'
           reporter: mocha-json
           token: ${{ secrets.GITHUB_TOKEN }}
