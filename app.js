@@ -1,40 +1,13 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const morgan = require("morgan");
-const cors = require("cors");
-const helmet = require("helmet");
-const dotenv = require("dotenv");
-
-dotenv.config();
-const port = process.env.PORT || 3000;
-
-const app = express();
-const router = express.Router();
-
-// middlewares
-app.use(helmet());
-app.use(morgan("dev"));
-app.use(cors({ origin: "*" }));
-app.use("/api", bodyParser.json(), router);
-
-app.listen(port, () => {
-  console.log(`[ web & socket server ] listening on ${port}`);
+"use strict";
+exports.__esModule = true;
+var express = require("express");
+var App = /** @class */ (function () {
+    function App() {
+        this.application = express();
+    }
+    return App;
+}());
+var app = new App().application;
+app.listen(3000, function () {
+    console.log('[ web & socket server ] listening on 3000');
 });
-
-// connect DB
-const db = require("./models");
-db.sequelize
-  .sync()
-  .then(() => {
-    console.log("mafia app DB connected");
-  })
-  .catch(console.error);
-
-router.get("/", (_, res) => {
-  res.send("MINI PROJ SERVER OPEN 2");
-});
-
-// routes
-// const postRouter = require('./routes/post');
-// const userRouter = require('./routes/user');
-// app.use('/api', [postRouter, userRouter]);
