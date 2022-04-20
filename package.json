@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -ui tdd ./test/*.js",
+    "test": "mocha **/*.spec.js && mocha --reporter json > reports/test-results.json",
     "start": "pm2 start app.js"
   },
   "repository": {
