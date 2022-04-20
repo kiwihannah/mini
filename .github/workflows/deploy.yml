@@ -29,7 +29,7 @@ jobs:
           name: test-results
           path: junit.xml
           fail-on-error: 'false'
-          reporter: jest-junit
+          reporter: mocha
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy
