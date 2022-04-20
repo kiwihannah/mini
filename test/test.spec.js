@@ -3,7 +3,7 @@ const calc = require('../models/calc')
 suite('[TDD] calculator test', () => {
     test('add two number test', () => {
         const ret = calc.plus(1,2);
-        assert.equal(ret, 3);
+        assert.equal(ret, 4); //3
     })
     test('minus two number test', () => {
         const ret = calc.minus(3,2);
