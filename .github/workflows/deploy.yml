@@ -11,7 +11,8 @@ jobs:
     steps:
 
       - name: Run tests
-        run: npm test 
+          script: |
+            npm test
 
       - name: Test Report
         uses: dorny/test-reporter@v1
