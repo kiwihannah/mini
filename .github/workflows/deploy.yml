@@ -27,9 +27,9 @@ jobs:
         if: success() || failure()
         with:
           name: test-results
-          path: reports/mocha-*.json
+          path: ./test/reports/test-reports.json
           fail-on-error: 'false'
-          reporter: 'mocha-json'
+          reporter: mocha-json
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy

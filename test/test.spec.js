@@ -1,7 +1,6 @@
 const assert = require("assert");
 const calc = require("../models/calc");
-
-suite("[TDD] calc test", () => {
+suite("[TDD] calculator test", () => {
   test("add two number test", () => {
     const ret = calc.plus(1, 2);
     assert.equal(ret, 3);
