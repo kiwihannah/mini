@@ -11,16 +11,16 @@ jobs:
     steps:
 
       - name: Run tests
-        run: npm test:report
+        run: npm test
 
       - name: Test Report
         uses: dorny/test-reporter@v1
-        if: success() || failure()    # run this step even if previous step failed
+        if: success() || failure()
         with:
           name: test-results
           path: junit.xml
           fail-on-error: 'false'
-          reporter: jest-junit        # Format of test results
+          reporter: jest-junit
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy
@@ -45,7 +45,7 @@ jobs:
             {
               attachments: [{
                 color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
-                text: '테스트 실패!'
+                text: 'TEST RESULT'
               }]
             }
         env:
