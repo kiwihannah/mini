@@ -17,17 +17,23 @@ jobs:
         uses: actions/setup-node@v1
 
       - name: Install dependencies
-        run: npm install
+        run: npm update
 
       - name: Run tests 
         run: npm test
+
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action/composite@v1
+        if: always()
+        with:
+          files: "test-results/**/*.xml"
 
       - name: Test Report
         uses: dorny/test-reporter@v1
         if: success() || failure()
         with:
           name: test-results
-          path: reports/mocha-json-*.xml 
+          path: test-results/**/*.xml
           fail-on-error: 'false'
           reporter: 'mocha-json'
           token: ${{ secrets.GITHUB_TOKEN }}
