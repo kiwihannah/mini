@@ -27,7 +27,7 @@ jobs:
         if: success() || failure()
         with:
           name: test-results
-          path: ./test/reports/test-report.json
+          path: /home/ubuntu/mini/test/reports/test-report.json
           fail-on-error: 'false'
           reporter: mocha-json
           token: ${{ secrets.GITHUB_TOKEN }}
